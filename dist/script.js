@@ -954,6 +954,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
+
 //first task
 //чтобы экспортировать код, который здесь есть
 var modals = function modals() {
@@ -1022,8 +1024,18 @@ var modals = function modals() {
 
   var showModalByTime = function showModalByTime(selector, time) {
     setTimeout(function () {
-      document.querySelector(selector).style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      var display = '';
+      document.querySelectorAll('[data-modal]').forEach(function (item) {
+        //если модальное окно показано пользователю, то делаем...
+        if (getComputedStyle(item).display !== 'none') {
+          display = (_readOnlyError("display"), 'block');
+        }
+      }); //если ни одно модальное окно не показывается, показываем окно, которое нужно
+
+      if (!display) {
+        document.querySelector(selector).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
     }, time);
   };
 
@@ -1049,7 +1061,8 @@ var modals = function modals() {
     triggersSelector: '.button-consultation',
     modalSelector: '.popup-consultation',
     closeSelector: '.popup-consultation .popup-close'
-  }); //   showModalByTime('.popup', 3000);
+  });
+  showModalByTime('.popup-consultation', 5000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);

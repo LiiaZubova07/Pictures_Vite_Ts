@@ -65,8 +65,20 @@ const modals = () => {
 
   const showModalByTime = (selector, time) => {
     setTimeout(() => {
-      document.querySelector(selector).style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      const display = '';
+
+      document.querySelectorAll('[data-modal]').forEach((item) => {
+        //если модальное окно показано пользователю, то делаем...
+        if (getComputedStyle(item).display !== 'none') {
+          display = 'block';
+        }
+      });
+
+		//если ни одно модальное окно не показывается, показываем окно, которое нужно
+      if (!display) {
+        document.querySelector(selector).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
     }, time);
   };
 
@@ -92,12 +104,12 @@ const modals = () => {
   });
 
   bindModal({
-	triggersSelector: '.button-consultation',
-	modalSelector:'.popup-consultation',
-	closeSelector: '.popup-consultation .popup-close',
+    triggersSelector: '.button-consultation',
+    modalSelector: '.popup-consultation',
+    closeSelector: '.popup-consultation .popup-close',
   });
 
-  //   showModalByTime('.popup', 3000);
+    showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;
