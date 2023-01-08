@@ -28,8 +28,7 @@ const modals = () => {
         //когда модальное окно открыто, то скролится только модальное окно
         document.body.style.overflow = 'hidden';
         document.body.style.marginRight = `${scroll}px`;
-        //чтоб использовать класс
-        // document.body.classList.add('modal-open');
+
         const input = modal.querySelector('input');
         if (input) input.focus();
       });
@@ -86,7 +85,17 @@ const modals = () => {
     return scrollWidth;
   }
 
-  bindModal({});
+  bindModal({
+    triggersSelector: '.button-design',
+    modalSelector: '.popup-design',
+    closeSelector: '.popup-design .popup-close',
+  });
+
+  bindModal({
+	triggersSelector: '.button-consultation',
+	modalSelector:'.popup-consultation',
+	closeSelector: '.popup-consultation .popup-close',
+  });
 
   //   showModalByTime('.popup', 3000);
 };
