@@ -963,8 +963,8 @@ var modals = function modals() {
     var triggersSelector = _ref.triggersSelector,
         modalSelector = _ref.modalSelector,
         closeSelector = _ref.closeSelector,
-        _ref$closeClickOverla = _ref.closeClickOverlay,
-        closeClickOverlay = _ref$closeClickOverla === void 0 ? true : _ref$closeClickOverla;
+        _ref$destroy = _ref.destroy,
+        destroy = _ref$destroy === void 0 ? false : _ref$destroy;
     //на несколько одинаковых элементов повесить одни и те же функции
     var triggers = document.querySelectorAll(triggersSelector);
     var modal = document.querySelector(modalSelector);
@@ -981,6 +981,11 @@ var modals = function modals() {
       item.addEventListener('click', function (e) {
         if (e.target) {
           e.preventDefault();
+        } //если аргумент true, то условие вполнится
+
+
+        if (destroy) {
+          item.remove();
         }
 
         windows.forEach(function (window) {
@@ -1005,7 +1010,7 @@ var modals = function modals() {
     }); //чтоб мод окно закрывалось при нажатии вне модального окна
 
     modal.addEventListener('click', function (e) {
-      if (e.target === modal && closeClickOverlay) {
+      if (e.target === modal) {
         windows.forEach(function (window) {
           window.style.display = 'none';
         });
