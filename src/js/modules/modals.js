@@ -78,6 +78,8 @@ const modals = () => {
       if (!display) {
         document.querySelector(selector).style.display = 'block';
         document.body.style.overflow = 'hidden';
+		  const scroll = calcScroll();
+		  document.body.style.marginRight = `${scroll}px`;
       }
     }, time);
   };
@@ -109,7 +111,7 @@ const modals = () => {
     closeSelector: '.popup-consultation .popup-close',
   });
 
-    showModalByTime('.popup-consultation', 5000);
+   //  showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;

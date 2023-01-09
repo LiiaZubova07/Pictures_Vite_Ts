@@ -1035,6 +1035,8 @@ var modals = function modals() {
       if (!display) {
         document.querySelector(selector).style.display = 'block';
         document.body.style.overflow = 'hidden';
+        var scroll = calcScroll();
+        document.body.style.marginRight = "".concat(scroll, "px");
       }
     }, time);
   };
@@ -1061,8 +1063,7 @@ var modals = function modals() {
     triggersSelector: '.button-consultation',
     modalSelector: '.popup-consultation',
     closeSelector: '.popup-consultation .popup-close'
-  });
-  showModalByTime('.popup-consultation', 5000);
+  }); //  showModalByTime('.popup-consultation', 5000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
