@@ -1,7 +1,7 @@
 //first task
 //чтобы экспортировать код, который здесь есть
 const modals = () => {
-  function bindModal({ triggersSelector, modalSelector, closeSelector, closeClickOverlay = true }) {
+  function bindModal({ triggersSelector, modalSelector, closeSelector, destroy = false }) {
     //на несколько одинаковых элементов повесить одни и те же функции
     const triggers = document.querySelectorAll(triggersSelector);
     const modal = document.querySelector(modalSelector);
@@ -18,6 +18,10 @@ const modals = () => {
       item.addEventListener('click', (e) => {
         if (e.target) {
           e.preventDefault();
+        }
+		  //если аргумент true, то условие вполнится
+        if (destroy) {
+          item.remove();
         }
 
         windows.forEach((window) => {
@@ -46,7 +50,7 @@ const modals = () => {
 
     //чтоб мод окно закрывалось при нажатии вне модального окна
     modal.addEventListener('click', (e) => {
-      if (e.target === modal && closeClickOverlay) {
+      if (e.target === modal) {
         windows.forEach((window) => {
           window.style.display = 'none';
         });
