@@ -74,6 +74,7 @@ const sliders = ({ slides, dir, prev, next }) => {
 
   activateAnimation();
 
+  //чтоб при наведении мышки на слайдер, он не переключался
   items[0].parentNode.addEventListener('mouseenter', () => {
     clearInterval(paused);
   });
