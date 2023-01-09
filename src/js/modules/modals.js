@@ -115,6 +115,13 @@ const modals = () => {
     closeSelector: '.popup-consultation .popup-close',
   });
 
+  bindModal({
+	triggersSelector: '.fixed-gift',
+	modalSelector: '.popup-gift',
+	closeSelector: '.popup-gift .popup-close',
+	destroy: true,
+  })
+
    //  showModalByTime('.popup-consultation', 5000);
 };
 
