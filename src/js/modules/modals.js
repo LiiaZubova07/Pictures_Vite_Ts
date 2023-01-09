@@ -28,8 +28,7 @@ const modals = () => {
         //когда модальное окно открыто, то скролится только модальное окно
         document.body.style.overflow = 'hidden';
         document.body.style.marginRight = `${scroll}px`;
-        //чтоб использовать класс
-        // document.body.classList.add('modal-open');
+
         const input = modal.querySelector('input');
         if (input) input.focus();
       });
@@ -66,8 +65,22 @@ const modals = () => {
 
   const showModalByTime = (selector, time) => {
     setTimeout(() => {
-      document.querySelector(selector).style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      const display = '';
+
+      document.querySelectorAll('[data-modal]').forEach((item) => {
+        //если модальное окно показано пользователю, то делаем...
+        if (getComputedStyle(item).display !== 'none') {
+          display = 'block';
+        }
+      });
+
+		//если ни одно модальное окно не показывается, показываем окно, которое нужно
+      if (!display) {
+        document.querySelector(selector).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+		  const scroll = calcScroll();
+		  document.body.style.marginRight = `${scroll}px`;
+      }
     }, time);
   };
 
@@ -86,9 +99,19 @@ const modals = () => {
     return scrollWidth;
   }
 
-  bindModal({});
+  bindModal({
+    triggersSelector: '.button-design',
+    modalSelector: '.popup-design',
+    closeSelector: '.popup-design .popup-close',
+  });
 
-  //   showModalByTime('.popup', 3000);
+  bindModal({
+    triggersSelector: '.button-consultation',
+    modalSelector: '.popup-consultation',
+    closeSelector: '.popup-consultation .popup-close',
+  });
+
+   //  showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;
