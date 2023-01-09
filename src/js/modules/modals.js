@@ -30,6 +30,7 @@ const modals = () => {
 
         windows.forEach((window) => {
           window.style.display = 'none';
+			 window.classList.add('animated', 'fadeIn');
         });
         //модальное окно показывается на странице
         modal.style.display = 'block';

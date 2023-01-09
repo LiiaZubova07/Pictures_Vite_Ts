@@ -994,6 +994,7 @@ var modals = function modals() {
 
         windows.forEach(function (window) {
           window.style.display = 'none';
+          window.classList.add('animated', 'fadeIn');
         }); //модальное окно показывается на странице
 
         modal.style.display = 'block'; //когда модальное окно открыто, то скролится только модальное окно
