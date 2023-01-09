@@ -1,6 +1,7 @@
 //first task
 //чтобы экспортировать код, который здесь есть
 const modals = () => {
+  let btnPressed = false;
   function bindModal({ triggersSelector, modalSelector, closeSelector, destroy = false }) {
     //на несколько одинаковых элементов повесить одни и те же функции
     const triggers = document.querySelectorAll(triggersSelector);
@@ -19,7 +20,10 @@ const modals = () => {
         if (e.target) {
           e.preventDefault();
         }
-		  //если аргумент true, то условие вполнится
+        //нажал ли пользователь хоть какую-то кнопку
+        btnPressed = true;
+
+        //если аргумент true, то условие вполнится
         if (destroy) {
           item.remove();
         }
@@ -54,7 +58,7 @@ const modals = () => {
           window.style.display = 'none';
         });
         closeModal();
-        document.body.style.marginRight = `0px`;
+        document.body.style.marginRight = `0`;
       }
     });
 
@@ -62,14 +66,14 @@ const modals = () => {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal();
-        document.body.style.marginRight = `0px`;
+        document.body.style.marginRight = `0`;
       }
     });
   }
 
   const showModalByTime = (selector, time) => {
     setTimeout(() => {
-      const display = '';
+      const display = false;
 
       document.querySelectorAll('[data-modal]').forEach((item) => {
         //если модальное окно показано пользователю, то делаем...
@@ -78,17 +82,17 @@ const modals = () => {
         }
       });
 
-		//если ни одно модальное окно не показывается, показываем окно, которое нужно
+      //если ни одно модальное окно не показывается, показываем окно, которое нужно
       if (!display) {
         document.querySelector(selector).style.display = 'block';
         document.body.style.overflow = 'hidden';
-		  const scroll = calcScroll();
-		  document.body.style.marginRight = `${scroll}px`;
+        const scroll = calcScroll();
+        document.body.style.marginRight = `${scroll}px`;
       }
     }, time);
   };
 
-  function calcScroll() {
+  const calcScroll = () => {
     const div = document.createElement('div');
     div.style.width = '50px';
     div.style.height = '50px';
@@ -101,7 +105,23 @@ const modals = () => {
     div.remove();
 
     return scrollWidth;
-  }
+  };
+
+  const openByScroll = (selector) => {
+    window.addEventListener('scroll', () => {
+      //узнать сколько пикселей пользователь отлистал
+      // + контент, который виден пользователю
+      // + определить долистал ли пользователь страницу до конца
+      if (
+        !btnPressed &&
+        window.pageYOffset + document.documentElement.clientHeight >=
+          document.documentElement.scrollHeight
+      ) {
+        //вызвать событие вручную
+        document.querySelector(selector).click();
+      }
+    });
+  };
 
   bindModal({
     triggersSelector: '.button-design',
@@ -116,13 +136,14 @@ const modals = () => {
   });
 
   bindModal({
-	triggersSelector: '.fixed-gift',
-	modalSelector: '.popup-gift',
-	closeSelector: '.popup-gift .popup-close',
-	destroy: true,
-  })
+    triggersSelector: '.fixed-gift',
+    modalSelector: '.popup-gift',
+    closeSelector: '.popup-gift .popup-close',
+    destroy: true,
+  });
+  openByScroll('.fixed-gift');
 
-   //  showModalByTime('.popup-consultation', 5000);
+  //  showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;

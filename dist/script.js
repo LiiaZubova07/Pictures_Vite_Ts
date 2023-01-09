@@ -959,6 +959,8 @@ function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only")
 //first task
 //чтобы экспортировать код, который здесь есть
 var modals = function modals() {
+  var btnPressed = false;
+
   function bindModal(_ref) {
     var triggersSelector = _ref.triggersSelector,
         modalSelector = _ref.modalSelector,
@@ -981,8 +983,10 @@ var modals = function modals() {
       item.addEventListener('click', function (e) {
         if (e.target) {
           e.preventDefault();
-        } //если аргумент true, то условие вполнится
+        } //нажал ли пользователь хоть какую-то кнопку
 
+
+        btnPressed = true; //если аргумент true, то условие вполнится
 
         if (destroy) {
           item.remove();
@@ -1015,21 +1019,21 @@ var modals = function modals() {
           window.style.display = 'none';
         });
         closeModal();
-        document.body.style.marginRight = "0px";
+        document.body.style.marginRight = "0";
       }
     }); //модальное окно закрывается при нажатии на escape
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeModal();
-        document.body.style.marginRight = "0px";
+        document.body.style.marginRight = "0";
       }
     });
   }
 
   var showModalByTime = function showModalByTime(selector, time) {
     setTimeout(function () {
-      var display = '';
+      var display = false;
       document.querySelectorAll('[data-modal]').forEach(function (item) {
         //если модальное окно показано пользователю, то делаем...
         if (getComputedStyle(item).display !== 'none') {
@@ -1046,7 +1050,7 @@ var modals = function modals() {
     }, time);
   };
 
-  function calcScroll() {
+  var calcScroll = function calcScroll() {
     var div = document.createElement('div');
     div.style.width = '50px';
     div.style.height = '50px';
@@ -1057,7 +1061,19 @@ var modals = function modals() {
     var scrollWidth = div.offsetWidth - div.clientWidth;
     div.remove();
     return scrollWidth;
-  }
+  };
+
+  var openByScroll = function openByScroll(selector) {
+    window.addEventListener('scroll', function () {
+      //узнать сколько пикселей пользователь отлистал
+      // + контент, который виден пользователю
+      // + определить долистал ли пользователь страницу до конца
+      if (!btnPressed && window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+        //вызвать событие вручную
+        document.querySelector(selector).click();
+      }
+    });
+  };
 
   bindModal({
     triggersSelector: '.button-design',
@@ -1074,7 +1090,8 @@ var modals = function modals() {
     modalSelector: '.popup-gift',
     closeSelector: '.popup-gift .popup-close',
     destroy: true
-  }); //  showModalByTime('.popup-consultation', 5000);
+  });
+  openByScroll('.fixed-gift'); //  showModalByTime('.popup-consultation', 5000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
