@@ -4,17 +4,20 @@ const forms = () => {
   const forms = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
 
-  checkNumInputs('input[name="user_phone"]'); 
+  //   checkNumInputs('input[name="user_phone"]');
 
   const message = {
     loading: 'Загрузка...',
     succes: 'Спасибо! Мы с Вами скоро свяжемся',
     failure: 'Что-то пошло не так',
+    spinner: 'assets/img/spinner.gif',
+    ok: 'assets/img/ok.png',
+    fail: 'assets/img/fail.png',
   };
+
 
   //запрос на сервер
   const postData = async (url, data) => {
-    document.querySelector('.status').textContent = message.loading;
     const res = await fetch(url, {
       method: 'POST',
       body: data,
@@ -38,15 +41,32 @@ const forms = () => {
       //форма для сообщений выше
       const statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
-      form.appendChild(statusMessage);
+      form.parentNode.appendChild(statusMessage);
+
+		//чтоб исчезало и не оставляло физического места
+      form.classList.add('animated', 'fadeOutUp');
+      setTimeout(() => {
+        form.style.display = 'none';
+      }, 400);
+
+		//отображение статуса сообщения после отправки формы
+		const statusImg = document.createElement('img');
+		statusImg.setAttribute('src', message.spinner);
+		statusImg.classList.add('animated', 'fadeInUp');
+		statusMessage.appendChild(statusImg);
+
+		//текстовое сообщение
+		const textMessage = document.createElement('div');
+		textMessage.textContent = message.loading;
+		statusMessage.appendChild(textMessage);
 
       //сбор данных из формы
       const formData = new FormData(form);
-		if (form.getAttribute('data-calc') === 'end'){
-			for (let key in state){
-				formData.append(key, state[key]);
-			}
-		}
+      if (form.getAttribute('data-calc') === 'end') {
+        for (let key in state) {
+          formData.append(key, state[key]);
+        }
+      }
 
       //formData отправляется на сервер
       postData('assets/server.php', formData)
