@@ -17,9 +17,9 @@ const forms = () => {
 
   //пути, по которым отправляем данные
   const path = {
-	designer: 'assets/server.php',
-	question: 'assets/question.php'
-  }
+    designer: 'assets/server.php',
+    question: 'assets/question.php',
+  };
 
   //запрос на сервер
   const postData = async (url, data) => {
@@ -48,38 +48,40 @@ const forms = () => {
       statusMessage.classList.add('status');
       form.parentNode.appendChild(statusMessage);
 
-		//чтоб исчезало и не оставляло физического места
+      //чтоб исчезало и не оставляло физического места
       form.classList.add('animated', 'fadeOutUp');
       setTimeout(() => {
         form.style.display = 'none';
       }, 400);
 
-		//отображение статуса сообщения после отправки формы
-		const statusImg = document.createElement('img');
-		statusImg.setAttribute('src', message.spinner);
-		statusImg.classList.add('animated', 'fadeInUp');
-		statusMessage.appendChild(statusImg);
+      //отображение статуса сообщения после отправки формы
+      const statusImg = document.createElement('img');
+      statusImg.setAttribute('src', message.spinner);
+      statusImg.classList.add('animated', 'fadeInUp');
+      statusMessage.appendChild(statusImg);
 
-		//текстовое сообщение
-		const textMessage = document.createElement('div');
-		textMessage.textContent = message.loading;
-		statusMessage.appendChild(textMessage);
+      //текстовое сообщение
+      const textMessage = document.createElement('div');
+      textMessage.textContent = message.loading;
+      statusMessage.appendChild(textMessage);
 
       //сбор данных из формы
       const formData = new FormData(form);
-      if (form.getAttribute('data-calc') === 'end') {
-        for (let key in state) {
-          formData.append(key, state[key]);
-        }
-      }
+      let api;
+      form.closest('.popup-design') ? (api = path.designer) : (api = path.question);
+      console.log(api);
 
       //formData отправляется на сервер
-      postData('assets/server.php', formData)
+      postData(api, formData)
         .then((res) => {
           console.log(res);
-          statusMessage.textContent = message.succes;
+          statusImg.setAttribute('src', message.ok);
+          textMessage.textContent = message.succes;
         })
-        .catch(() => (statusMessage.textContent = message.failure))
+        .catch(() => {
+			statusImg.setAttribute('src', message.fail);
+			textMessage.textContent = message.failure;
+        })
         .finally(() => {
           clearInputs();
           setTimeout(() => {
