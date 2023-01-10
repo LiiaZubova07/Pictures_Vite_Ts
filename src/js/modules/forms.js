@@ -15,6 +15,11 @@ const forms = () => {
     fail: 'assets/img/fail.png',
   };
 
+  //пути, по которым отправляем данные
+  const path = {
+	designer: 'assets/server.php',
+	question: 'assets/question.php'
+  }
 
   //запрос на сервер
   const postData = async (url, data) => {
