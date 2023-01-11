@@ -79,8 +79,8 @@ const forms = () => {
           textMessage.textContent = message.succes;
         })
         .catch(() => {
-			statusImg.setAttribute('src', message.fail);
-			textMessage.textContent = message.failure;
+          statusImg.setAttribute('src', message.fail);
+          textMessage.textContent = message.failure;
         })
         .finally(() => {
           clearInputs();
