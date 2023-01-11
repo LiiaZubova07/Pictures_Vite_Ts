@@ -44,7 +44,7 @@ const forms = () => {
       e.preventDefault();
 
       //форма для сообщений выше
-      const statusMessage = document.createElement('div');
+      let statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
       form.parentNode.appendChild(statusMessage);
 
@@ -55,18 +55,18 @@ const forms = () => {
       }, 400);
 
       //отображение статуса сообщения после отправки формы
-      const statusImg = document.createElement('img');
+      let statusImg = document.createElement('img');
       statusImg.setAttribute('src', message.spinner);
       statusImg.classList.add('animated', 'fadeInUp');
       statusMessage.appendChild(statusImg);
 
       //текстовое сообщение
-      const textMessage = document.createElement('div');
+      let textMessage = document.createElement('div');
       textMessage.textContent = message.loading;
       statusMessage.appendChild(textMessage);
 
       //сбор данных из формы
-      const formData = new FormData(form);
+      let formData = new FormData(form);
       let api;
       form.closest('.popup-design') ? (api = path.designer) : (api = path.question);
       console.log(api);
@@ -86,9 +86,9 @@ const forms = () => {
           clearInputs();
           setTimeout(() => {
             statusMessage.remove();
-            form.style.display = 'block';
-            form.classList.remove('fadeOutUp');
-            form.classList.add('fadeInUp');
+            form.style.display='block';
+				form.classList.remove('fadeOutUp');
+				form.classList.add('fadeInUp');
           }, 5000);
         });
     });
