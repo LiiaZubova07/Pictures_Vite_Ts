@@ -86,6 +86,9 @@ const forms = () => {
           clearInputs();
           setTimeout(() => {
             statusMessage.remove();
+            form.style.display = 'block';
+            form.classList.remove('fadeOutUp');
+            form.classList.add('fadeInUp');
           }, 5000);
         });
     });
