@@ -3,6 +3,7 @@
 const forms = () => {
   const forms = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
+  const uploads = document.querySelectorAll('[name="upload"]');
 
   //   checkNumInputs('input[name="user_phone"]');
 
@@ -36,7 +37,23 @@ const forms = () => {
     inputs.forEach((input) => {
       input.value = '';
     });
+	 uploads.forEach(upload=>{
+		upload.previousElementSibling.textContent = 'Файл не выбран';
+	 })
   };
+
+  uploads.forEach((upload) => {
+    upload.addEventListener('input', () => {
+      console.log(upload.files[0]);
+      let dots;
+      const arr = upload.files[0].name.split('.');
+
+      arr[0].length > 6 ? (dots = '...') : (dots = '.');
+      //
+      const name = arr[0].substring(0, 6) + dots + arr[1];
+      upload.previousElementSibling.textContent = name;
+    });
+  });
 
   //перебор форм
   forms.forEach((form) => {
@@ -44,7 +61,7 @@ const forms = () => {
       e.preventDefault();
 
       //форма для сообщений выше
-      let statusMessage = document.createElement('div');
+      const statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
       form.parentNode.appendChild(statusMessage);
 
@@ -55,7 +72,7 @@ const forms = () => {
       }, 400);
 
       //отображение статуса сообщения после отправки формы
-      let statusImg = document.createElement('img');
+      const statusImg = document.createElement('img');
       statusImg.setAttribute('src', message.spinner);
       statusImg.classList.add('animated', 'fadeInUp');
       statusMessage.appendChild(statusImg);
@@ -66,9 +83,11 @@ const forms = () => {
       statusMessage.appendChild(textMessage);
 
       //сбор данных из формы
-      let formData = new FormData(form);
+      const formData = new FormData(form);
       let api;
-      form.closest('.popup-design') ? (api = path.designer) : (api = path.question);
+      form.closest('.popup-design') || form.classList.contains('calc_form')
+        ? (api = path.designer)
+        : (api = path.question);
       console.log(api);
 
       //formData отправляется на сервер
@@ -86,9 +105,9 @@ const forms = () => {
           clearInputs();
           setTimeout(() => {
             statusMessage.remove();
-            form.style.display='block';
-				form.classList.remove('fadeOutUp');
-				form.classList.add('fadeInUp');
+            form.style.display = 'block';
+            form.classList.remove('fadeOutUp');
+            form.classList.add('fadeInUp');
           }, 5000);
         });
     });
