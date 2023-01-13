@@ -66,7 +66,7 @@ const forms = () => {
 
       const dots = fileName.length > 6 ? '...' : '.';
       //
-      const name = `${fileName.substring(0, 6)}${dots} + ${fileType}`;
+      const name = `${fileName.substring(0, 6)} ${dots} ${fileExt}`;
 
       upload.previousElementSibling.textContent = name;
     });
