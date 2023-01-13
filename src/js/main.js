@@ -1,6 +1,7 @@
 import modals from './modules/modals';
 import sliders from './modules/sliders';
 import forms from './modules/forms';
+import mask from './modules/mask';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -18,4 +19,5 @@ window.addEventListener('DOMContentLoaded', () => {
     dir: 'vertical',
   });
   forms();
+  mask('[name="phone"]');
 });
