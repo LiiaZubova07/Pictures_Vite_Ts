@@ -1,5 +1,6 @@
 import modals from './modules/modals';
 import sliders from './modules/sliders';
+import forms from './modules/forms';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -16,4 +17,5 @@ window.addEventListener('DOMContentLoaded', () => {
     slides: '.main-slider-item',
     dir: 'vertical',
   });
+  forms();
 });
