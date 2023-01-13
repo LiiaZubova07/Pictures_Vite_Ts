@@ -37,20 +37,37 @@ const forms = () => {
     inputs.forEach((input) => {
       input.value = '';
     });
-	 uploads.forEach(upload=>{
-		upload.previousElementSibling.textContent = 'Файл не выбран';
-	 })
+    uploads.forEach((upload) => {
+      upload.previousElementSibling.textContent = 'Файл не выбран';
+    });
   };
+
+  //   uploads.forEach((upload) => {
+  //     upload.addEventListener('input', () => {
+  //       console.log(upload.files[0]);
+  //       let dots;
+  //       const arr = upload.files[0].name.split('.');
+
+  //       arr[0].length > 6 ? (dots = '...') : (dots = '.');
+  //       //
+  //       const name = arr[0].substring(0, 6) + dots + arr[1];
+  //       upload.previousElementSibling.textContent = name;
+  //     });
+  //   });
 
   uploads.forEach((upload) => {
     upload.addEventListener('input', () => {
-      console.log(upload.files[0]);
-      let dots;
-      const arr = upload.files[0].name.split('.');
+      const file = upload.files[0];
+      console.log(file);
 
-      arr[0].length > 6 ? (dots = '...') : (dots = '.');
+      // const fileName = file.name.split('.')[0];
+      // const fileExt = file.name.split('.')[1];
+      const [fileName, fileExt] = file.name.split('.');
+
+      const dots = fileName.length > 6 ? '...' : '.';
       //
-      const name = arr[0].substring(0, 6) + dots + arr[1];
+      const name = `${fileName.substring(0, 6)}${dots} + ${fileType}`;
+
       upload.previousElementSibling.textContent = name;
     });
   });
@@ -78,16 +95,16 @@ const forms = () => {
       statusMessage.appendChild(statusImg);
 
       //текстовое сообщение
-      let textMessage = document.createElement('div');
+      const textMessage = document.createElement('div');
       textMessage.textContent = message.loading;
       statusMessage.appendChild(textMessage);
 
       //сбор данных из формы
       const formData = new FormData(form);
-      let api;
-      form.closest('.popup-design') || form.classList.contains('calc_form')
-        ? (api = path.designer)
-        : (api = path.question);
+      const api =
+        form.closest('.popup-design') || form.classList.contains('calc_form')
+          ? (api = path.designer)
+          : (api = path.question);
       console.log(api);
 
       //formData отправляется на сервер
