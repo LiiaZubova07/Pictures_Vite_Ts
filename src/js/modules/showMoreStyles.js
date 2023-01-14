@@ -1,7 +1,7 @@
 import { getResource } from '../services/requests';
 
 const showMoreStyles = (trigger, wrapper) => {
-   const btn = document.querySelector(trigger);
+  const btn = document.querySelector(trigger);
 
   //анимации
   //   cards.forEach((card) => {
@@ -17,14 +17,17 @@ const showMoreStyles = (trigger, wrapper) => {
   // 	 btn.remove();
   //   });
 
-  btn.addEventListener('click', () => {
-    getResource('http://localhost/dist/');
-    then((res) => console.console.log(res));
+  btn.addEventListener('click', function () {
+    getResource('assets/db.json')
+      .then((res) => createCards(res.styles))
+      .catch((error) => console.log(error));
+
+    this.remove();
   });
 
-  const createCards = (responce) => {
-    responce.forEach((item) => {
-      const card = document.createElement('div');
+  function createCards(responce) {
+    responce.forEach(({ src, title, link }) => {
+      let card = document.createElement('div');
 
       card.classList.add(
         'animated',
@@ -37,14 +40,14 @@ const showMoreStyles = (trigger, wrapper) => {
 
       card.innerHTML = `
 		<div class='styles-block'>
-			<img src=${item.src} alt='style'>
-			<h4>${item.title}</h4>
-			<a href=${item.src}>Подробнее</a>
+			<img src=${src} alt='style'>
+			<h4>${title}</h4>
+			<a href=${link}>Подробнее</a>
 		</div>
 	`;
 
-	document.querySelector(wrapper).appendChild(card);
+      document.querySelector(wrapper).appendChild(card);
     });
-  };
+  }
 };
 export default showMoreStyles;
