@@ -5,11 +5,11 @@ const calc = ({ size, material, options, promocode, result }) => {
   const promocodeBlock = document.querySelector(promocode);
   const resultBlock = document.querySelector(result);
 
-  let sum = 0;
+//   let sum = 0;
 
   //считает сумму
   const calcFunc = () => {
-    sum = Math.round(+sizeBlock.value * +materialBlock.value + +optionsBlock.value);
+    const sum = Math.round(Number(sizeBlock.value * materialBlock.value + optionsBlock.value));
 
     //проверить или 1 селект не заполнен или второй не заполнен
     if (sizeBlock.value == '' || materialBlock.value == '') {
