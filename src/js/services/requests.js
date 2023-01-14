@@ -10,7 +10,7 @@
 
   //запрос на сервер
   const getResource = async (url) => {
-	let res = await fetch(url);
+	const res = await fetch(url);
 
 	//если что-то не так, выходит ошибка
 	if (!res.ok){

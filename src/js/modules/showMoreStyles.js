@@ -27,7 +27,7 @@ const showMoreStyles = (trigger, wrapper) => {
 
   function createCards(responce) {
     responce.forEach(({ src, title, link }) => {
-      let card = document.createElement('div');
+      const card = document.createElement('div');
 
       card.classList.add(
         'animated',
