@@ -4,6 +4,7 @@ import forms from './modules/forms';
 import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showMoreStyles from './modules/showMoreStyles';
+import calc from './modules/calc';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -30,5 +31,16 @@ window.addEventListener('DOMContentLoaded', () => {
   checkTextInputs('[name="name"]');
   checkTextInputs('[name="message"]');
 
-  showMoreStyles('.button-styles', '#styles .row');
+  showMoreStyles({
+    trigger: '.button-styles',
+    wrapper: '#styles .row',
+  });
+
+  calc({
+    size: '#size',
+    material: '#material',
+    options: '#options',
+    promocode: '.promocode',
+    result: '.calc-price',
+  });
 });
