@@ -3,7 +3,7 @@ import { getResource } from '../services/requests';
 const showMoreStyles = (trigger, wrapper) => {
   const btn = document.querySelector(trigger);
 
-  //анимации
+ 
   //   cards.forEach((card) => {
   //     card.classList.add('animated', 'fadeInUp');
   //   });
@@ -16,7 +16,8 @@ const showMoreStyles = (trigger, wrapper) => {
   // 	//  btn.style.display='none';
   // 	 btn.remove();
   //   });
-
+  
+ //анимации
   btn.addEventListener('click', function () {
     getResource('assets/db.json')
       .then((res) => createCards(res.styles))
