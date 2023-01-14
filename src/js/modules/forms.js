@@ -1,4 +1,5 @@
 // import checkNumInputs from "./checkNumInputs";
+import { postData } from "../services/requests";
 
 const forms = () => {
   const forms = document.querySelectorAll('form');
