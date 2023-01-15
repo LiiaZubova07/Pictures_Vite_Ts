@@ -48,14 +48,14 @@ const filter = () => {
     //    : ((no.style.display = 'block'), no.classList.add('animated', 'fadeIn'));
   };
 
-  const btn = (btnName, markName) => {
-    btnName.addEventListener('click', () => {
-      typeFilter(markName);
-    });
-  };
+//   const btn = (btnName, markName) => {
+//     btnName.addEventListener('click', () => {
+//       typeFilter(markName);
+//     });
+//   };
 
-  btn(btnAll, markAll);
-  btn(btnLovers, markLovers);
+//   btn(btnAll, markAll);
+//   btn(btnLovers, markLovers);
 
   //используем кнопки
   btnAll.addEventListener('click', () => {
@@ -65,7 +65,6 @@ const filter = () => {
     typeFilter(markLovers);
   });
 
-  
   btnChef.addEventListener('click', () => {
     typeFilter(markChef);
   });
@@ -81,6 +80,19 @@ const filter = () => {
   btnGrandfather.addEventListener('click', () => {
     typeFilter();
   });
+
+
+  //меню, делегирование событий
+menu.addEventListener('click', (e)=>{
+let target = e.target;
+
+if(target && target.tagName == 'LI'){
+items.forEach(btn=> btn.classList.remove('active'));
+target.classList.add('active');
+}
+})
+
+
 };
 
 export default filter;

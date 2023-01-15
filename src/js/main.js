@@ -5,6 +5,7 @@ import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showMoreStyles from './modules/showMoreStyles';
 import calc from './modules/calc';
+import filter from './modules/filter';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
