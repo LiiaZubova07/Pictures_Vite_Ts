@@ -8,7 +8,7 @@ const filter = () => {
   const btnGirl = menu.querySelector('.girl');
   const btnGuy = menu.querySelector('.guy');
   const btnGrandmother = menu.querySelector('.grandmother');
-  const btnGrandfather = menu.querySelector('.grandfather');
+  const btnGrandfather = menu.querySelector('.granddad');
 
   const wrapper = document.querySelector('.portfolio-wrapper');
 
@@ -48,51 +48,52 @@ const filter = () => {
     //    : ((no.style.display = 'block'), no.classList.add('animated', 'fadeIn'));
   };
 
-//   const btn = (btnName, markName) => {
-//     btnName.addEventListener('click', () => {
-//       typeFilter(markName);
-//     });
-//   };
-
-//   btn(btnAll, markAll);
-//   btn(btnLovers, markLovers);
+  const btn = (btnName, markName) => {
+    btnName.addEventListener('click', () => {
+      typeFilter(markName);
+    });
+  };
 
   //используем кнопки
-  btnAll.addEventListener('click', () => {
-    typeFilter(markAll);
-  });
-  btnLovers.addEventListener('click', () => {
-    typeFilter(markLovers);
-  });
+  btn(btnAll, markAll);
+  btn(btnLovers, markLovers);
+  btn(btnChef, markChef);
+  btn(btnGirl, markGirl);
+  btn(btnGuy, markGuy);
+  btn(btnGrandmother);
+  btn(btnGrandfather);
 
-  btnChef.addEventListener('click', () => {
-    typeFilter(markChef);
-  });
-  btnGirl.addEventListener('click', () => {
-    typeFilter(markGirl);
-  });
-  btnGuy.addEventListener('click', () => {
-    typeFilter(markGuy);
-  });
-  btnGrandmother.addEventListener('click', () => {
-    typeFilter();
-  });
-  btnGrandfather.addEventListener('click', () => {
-    typeFilter();
-  });
-
+  //   btnAll.addEventListener('click', () => {
+  //     typeFilter(markAll);
+  //   });
+  //   btnLovers.addEventListener('click', () => {
+  //     typeFilter(markLovers);
+  //   });
+  //   btnChef.addEventListener('click', () => {
+  //     typeFilter(markChef);
+  //   });
+  //   btnGirl.addEventListener('click', () => {
+  //     typeFilter(markGirl);
+  //   });
+  //   btnGuy.addEventListener('click', () => {
+  //     typeFilter(markGuy);
+  //   });
+  //   btnGrandmother.addEventListener('click', () => {
+  //     typeFilter();
+  //   });
+  //   btnGrandfather.addEventListener('click', () => {
+  //     typeFilter();
+  //   });
 
   //меню, делегирование событий
-menu.addEventListener('click', (e)=>{
-let target = e.target;
+  menu.addEventListener('click', (e) => {
+    let target = e.target;
 
-if(target && target.tagName == 'LI'){
-items.forEach(btn=> btn.classList.remove('active'));
-target.classList.add('active');
-}
-})
-
-
+    if (target && target.tagName == 'LI') {
+      items.forEach((btn) => btn.classList.remove('active'));
+      target.classList.add('active');
+    }
+  });
 };
 
 export default filter;

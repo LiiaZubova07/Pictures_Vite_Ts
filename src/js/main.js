@@ -44,4 +44,6 @@ window.addEventListener('DOMContentLoaded', () => {
     promocode: '.promocode',
     result: '.calc-price',
   });
+
+  filter();
 });
