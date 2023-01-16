@@ -48,5 +48,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
   filter();
 
-pictureSize('.sizes-block');
+  pictureSize('.sizes-block');
 });
