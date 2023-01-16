@@ -13,6 +13,13 @@ const burger = ({ menuSelector, burgerSelector }) => {
       menuElem.style.display = 'none';
     }
   });
+
+  //отслеживание изменения размеров пользователем
+  window.addEventListener('resize', () => {
+    if (window.screen.availWidth > 992) {
+      menuElem.style.display = 'none';
+    }
+  });
 };
 
 export default burger;
