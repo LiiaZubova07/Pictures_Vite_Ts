@@ -87,7 +87,7 @@ const filter = () => {
 
   //меню, делегирование событий
   menu.addEventListener('click', (e) => {
-    let target = e.target;
+    const target = e.target;
 
     if (target && target.tagName == 'LI') {
       items.forEach((btn) => btn.classList.remove('active'));

@@ -8,7 +8,7 @@ const calc = ({ size, material, options, promocode, result }) => {
   let sum = 0;
   //считает сумму
   const calcFunc = () => {
-    sum = Math.round(+sizeBlock.value * +materialBlock.value + +optionsBlock.value);
+    sum = Math.round(Number(sizeBlock.value) * Number(materialBlock.value) + Number(optionsBlock.value));
 
     //проверить или 1 селект не заполнен или второй не заполнен
     if (sizeBlock.value == '' || materialBlock.value == '') {
