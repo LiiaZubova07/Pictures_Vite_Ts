@@ -13,46 +13,57 @@ const scrolling = (upSelector) => {
     }
   });
 
+
+  function setScrollIntoView(top){
+	const upSelected = document.querySelector('#up');
+	upSelected.scrollIntoView(top);
+  }
+
+  function setScrollIntoViewOptions(top){
+	const upSelected=document.querySelector('#up');
+	upSelected.scrollIntoView({block: center});
+  }
+
   //скролл с raf
   //ищу ссылки, начинающиеся с #
-  const links = document.querySelectorAll('[href^="#"]');
-  const speed = 0.5;
+//   const links = document.querySelectorAll('[href^="#"]');
+//   const speed = 0.5;
 
-  links.forEach((link) => {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
+//   links.forEach((link) => {
+//     link.addEventListener('click', function (event) {
+//       event.preventDefault();
 
-      const widthTop = document.documentElement.scrollTop;
-      let hash = this.hash;
-      //получить верхние координаты
-      const toBlock = document.querySelector(hash).getBoundingClientRect().top;
-      let start = null;
+//       const widthTop = document.documentElement.scrollTop;
+//       let hash = this.hash;
+//       //получить верхние координаты
+//       const toBlock = document.querySelector(hash).getBoundingClientRect().top;
+//       let start = null;
 
-      requestAnimationFrame(step);
-      //
-      function step(time) {
-        //первый ли раз анимация запускается
-        if (start === null) {
-          start = time;
-        }
+//       requestAnimationFrame(step);
+//       //
+//       function step(time) {
+//         //первый ли раз анимация запускается
+//         if (start === null) {
+//           start = time;
+//         }
 
-        const progress = time - start;
-        //количество пикселей, на которые нужно пролистать в течение этой операции
-        const r =
-          toBlock < 0
-            ? Math.max(widthTop - progress / speed, widthTop + toBlock)
-            : Math.min(widthTop + progress / speed, widthTop + toBlock);
+//         const progress = time - start;
+//         //количество пикселей, на которые нужно пролистать в течение этой операции
+//         const r =
+//           toBlock < 0
+//             ? Math.max(widthTop - progress / speed, widthTop + toBlock)
+//             : Math.min(widthTop + progress / speed, widthTop + toBlock);
 
-        document.documentElement.scrollTo(0, r);
+//         document.documentElement.scrollTo(0, r);
 
-        if (r != widthTop + toBlock) {
-          requestAnimationFrame(step);
-        } else {
-          location.hash = hash;
-        }
-      }
-    });
-  });
+//         if (r != widthTop + toBlock) {
+//           requestAnimationFrame(step);
+//         } else {
+//           location.hash = hash;
+//         }
+//       }
+//     });
+//   });
 
   //   //плавный скролл
   //   const element = document.documentElement;
