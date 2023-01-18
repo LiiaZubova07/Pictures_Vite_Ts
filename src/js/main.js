@@ -9,6 +9,7 @@ import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
 import accordion from './modules/accordion';
 import burger from './modules/burger';
+import scrolling from './modules/scrolling';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -60,4 +61,6 @@ window.addEventListener('DOMContentLoaded', () => {
     menuSelector: '.burger-menu',
     burgerSelector: '.burger',
   });
+
+  scrolling('.pageup');
 });
