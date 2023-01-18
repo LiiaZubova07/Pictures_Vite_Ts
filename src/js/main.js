@@ -8,6 +8,7 @@ import calc from './modules/calc';
 import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
 import accordion from './modules/accordion';
+import burger from './modules/burger';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -53,5 +54,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   accordion({
     triggersSelector: '.accordion-heading',
+  });
+
+  burger({
+    menuSelector: '.burger-menu',
+    burgerSelector: '.burger',
   });
 });
