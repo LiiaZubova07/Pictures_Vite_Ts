@@ -1524,7 +1524,7 @@ h4 {
 }
 
 .pageup {
-	opacity: 0;
+	opacity: 0; 
   width: 26px ;
   height: 26px;
   position: fixed;
