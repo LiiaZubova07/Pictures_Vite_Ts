@@ -19,11 +19,15 @@ const drop = () => {
 
   const highlight = (item) => {
     item.closest('.file_upload').style.border = '5px solid yellow';
-    item.closest('.file_upload').style.backgroundColor = 'rgba(0,0,0, 0.7';
+    item.closest('.file_upload').style.backgroundColor = 'rgba(0,0,0, 0.7)';
   };
-  const unHighlight = (item) => {
+  const unhighlight = (item) => {
     item.closest('.file_upload').style.border = 'none';
-    item.closest('.file_upload').style.backgroundColor = '#ededed';
+    if (item.closest('.calc_form')) {
+      item.closest('.file_upload').style.backgroundColor = '#fff';
+    } else {
+      item.closest('.file_upload').style.backgroundColor = '#ededed';
+    }
   };
 
   //массив событий
@@ -42,7 +46,21 @@ const drop = () => {
   //убирается цвет
   ['dragleave', 'drop'].forEach((eventName) => {
     fileInputs.forEach((input) => {
-      input.addEventListener(eventName, () => unHighlight(input), false);
+      input.addEventListener(eventName, () => unhighlight(input), false);
+    });
+  });
+
+  fileInputs.forEach((input) => {
+    input.addEventListener('drop', (e) => {
+      //чтоб аватарка уже устанавливалась в профиле когда устанавливаешь новую
+      //берём файлы, которые в drag&drop и перетаскиваем в input
+      input.files = e.dataTransfer.files;
+      let dots;
+      const arr = input.files[0].name.split('.');
+
+      arr[0].length > 6 ? (dots = '...') : (dots = '.');
+      const name = arr[0].substring(0, 6) + dots + arr[1];
+      input.previousElementSibling.textContent = name;
     });
   });
 };
