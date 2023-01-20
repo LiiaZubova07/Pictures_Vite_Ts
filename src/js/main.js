@@ -10,6 +10,7 @@ import pictureSize from './modules/pictureSize';
 import accordion from './modules/accordion';
 import burger from './modules/burger';
 import scrolling from './modules/scrolling';
+import drop from './modules/drop';
 
 //когда вся DOM-структура загружена
 window.addEventListener('DOMContentLoaded', () => {
@@ -63,4 +64,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   scrolling('.pageup');
+
+  drop();
 });
