@@ -1,10 +1,10 @@
 // import checkNumInputs from "./checkNumInputs";
-import { postData } from "../services/requests";
+import { postData } from '../services/requests';
 
 const forms = () => {
-  const forms = document.querySelectorAll('form');
-  const inputs = document.querySelectorAll('input');
-  const uploads = document.querySelectorAll('[name="upload"]');
+  const forms = document.querySelectorAll('form') as NodeListOf<HTMLFormElement>;
+  const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+  const uploads:NodeListOf<HTMLFormElement> = document.querySelectorAll('[name="upload"]') as NodeListOf<HTMLFormElement>;
 
   //   checkNumInputs('input[name="user_phone"]');
 
@@ -22,8 +22,6 @@ const forms = () => {
     designer: 'assets/server.php',
     question: 'assets/question.php',
   };
-
-
 
   //функция очищает все инпуты
   const clearInputs = () => {
@@ -48,7 +46,7 @@ const forms = () => {
   //     });
   //   });
 
-  uploads.forEach((upload) => {
+  uploads.forEach((upload:HTMLElement) => {
     upload.addEventListener('input', () => {
       const file = upload.files[0];
       console.log(file);
@@ -67,7 +65,7 @@ const forms = () => {
 
   //перебор форм
   forms.forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e:Event) => {
       e.preventDefault();
 
       //форма для сообщений выше
