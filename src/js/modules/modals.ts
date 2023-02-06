@@ -17,10 +17,12 @@ export const modals = () => {
     destroy = false,
   }: IBindModals) {
     //на несколько одинаковых элементов повесить одни и те же функции
-    const triggers = document.querySelectorAll(triggersSelector)as NodeListOf<Element>;
+    const triggers = document.querySelectorAll(triggersSelector) as NodeListOf<Element>;
     const modal = document.querySelector(modalSelector) as HTMLElement;
     const close = document.querySelector(closeSelector) as HTMLElement;
-    const windows = document.querySelectorAll('[data-modal]');
+    const windows: NodeListOf<HTMLElement> = document.querySelectorAll(
+      '[data-modal]'
+    ) as NodeListOf<HTMLElement>;
     const scroll = calcScroll();
 
     const closeModal = () => {
@@ -85,7 +87,7 @@ export const modals = () => {
     });
   }
 
-  const showModalByTime = (selector:string, time: number) => {
+  const showModalByTime = (selector: HTMLElement, time: number) => {
     setTimeout(() => {
       const display = false;
 
@@ -98,7 +100,7 @@ export const modals = () => {
 
       //если ни одно модальное окно не показывается, показываем окно, которое нужно
       if (!display) {
-        (document.querySelector(selector)as HTMLElement).style.display = 'block';
+        (document.querySelector(selector) as HTMLElement).style.display = 'block';
         document.body.style.overflow = 'hidden';
         const scroll = calcScroll();
         document.body.style.marginRight = `${scroll}px`;
@@ -121,7 +123,7 @@ export const modals = () => {
     return scrollWidth;
   };
 
-  const openByScroll = (selector:string) => {
+  const openByScroll = (selector: string) => {
     window.addEventListener('scroll', () => {
       //узнать сколько пикселей пользователь отлистал
       // + контент, который виден пользователю
@@ -157,7 +159,7 @@ export const modals = () => {
   });
   openByScroll('.fixed-gift');
 
-   // showModalByTime('.popup-consultation', 5000);
+  // showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;
