@@ -1,28 +1,29 @@
-const filter = () => {
+export const filter = () => {
   //добавляем элементы, с которыми будем работать
-  const menu = document.querySelector('.portfolio-menu');
-  const items = menu.querySelectorAll('li');
-  const btnAll = menu.querySelector('.all');
-  const btnLovers = menu.querySelector('.lovers');
-  const btnChef = menu.querySelector('.chef');
-  const btnGirl = menu.querySelector('.girl');
-  const btnGuy = menu.querySelector('.guy');
-  const btnGrandmother = menu.querySelector('.grandmother');
-  const btnGrandfather = menu.querySelector('.granddad');
+  const menu = document.querySelector('.portfolio-menu') as HTMLElement;
 
-  const wrapper = document.querySelector('.portfolio-wrapper');
+  const items = menu.querySelectorAll('li') as NodeListOf<HTMLLIElement>;
+  const btnAll = menu.querySelector('.all') as HTMLElement;
+  const btnLovers = menu.querySelector('.lovers') as HTMLElement;
+  const btnChef = menu.querySelector('.chef') as HTMLElement;
+  const btnGirl = menu.querySelector('.girl') as HTMLElement;
+  const btnGuy = menu.querySelector('.guy') as HTMLElement;
+  const btnGrandmother = menu.querySelector('.grandmother') as HTMLElement;
+  const btnGrandfather = menu.querySelector('.granddad') as HTMLElement;
 
-  const markAll = wrapper.querySelectorAll('.all');
-  const markGirl = wrapper.querySelectorAll('.girl');
-  const markLovers = wrapper.querySelectorAll('.lovers');
-  const markChef = wrapper.querySelectorAll('.chef');
-  const markGuy = wrapper.querySelectorAll('.guy');
+  const wrapper = document.querySelector('.portfolio-wrapper') as HTMLElement;
 
-  const no = document.querySelector('.portfolio-no');
+  const markAll = wrapper.querySelectorAll('.all') as NodeListOf<Element>;
+  const markGirl = wrapper.querySelectorAll('.girl') as NodeListOf<Element>;
+  const markLovers = wrapper.querySelectorAll('.lovers') as NodeListOf<Element>;
+  const markChef = wrapper.querySelectorAll('.chef') as NodeListOf<Element>;
+  const markGuy = wrapper.querySelectorAll('.guy') as NodeListOf<Element>;
+
+  const no = document.querySelector('.portfolio-no') as HTMLElement;
 
   //фильтрация элементов
   //скрыть ненужные элементы и показать нужные
-  const typeFilter = (markType) => {
+  const typeFilter = (markType: NodeListOf<HTMLElement>) => {
     markAll.forEach((mark) => {
       mark.style.display = 'none';
       mark.classList.remove('animated', 'fadeIn');
@@ -31,8 +32,8 @@ const filter = () => {
     no.style.display = 'none';
     no.classList.remove('animated', 'fadeIn');
 
-    if (markType) {
-      markType.forEach((mark) => {
+    if (markType.length > 1) {
+      markType.forEach((mark: HTMLElement) => {
         mark.style.display = 'block';
         mark.classList.add('animated', 'fadeIn');
       });
@@ -42,7 +43,7 @@ const filter = () => {
     }
 
     //  markType
-    //    ? markType.forEach((mark) => {
+    // -? markType.forEach((mark) => {
     //        (mark.style.display = 'block'), mark.classList.add('animated', 'fadeIn');
     //      })
     //    : ((no.style.display = 'block'), no.classList.add('animated', 'fadeIn'));
@@ -60,8 +61,8 @@ const filter = () => {
   btn(btnChef, markChef);
   btn(btnGirl, markGirl);
   btn(btnGuy, markGuy);
-  btn(btnGrandmother);
-  btn(btnGrandfather);
+  btn(btnGrandmother, '');
+  btn(btnGrandfather, '');
 
   //   btnAll.addEventListener('click', () => {
   //     typeFilter(markAll);
@@ -86,7 +87,7 @@ const filter = () => {
   //   });
 
   //меню, делегирование событий
-  menu.addEventListener('click', (e) => {
+  menu.addEventListener('click', (e: any) => {
     const target = e.target;
 
     if (target && target.tagName == 'LI') {
