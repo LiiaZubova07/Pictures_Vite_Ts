@@ -59,7 +59,7 @@ const forms = () => {
       //
       const name = `${fileName.substring(0, 6)} ${dots} ${fileExt}`;
 
-      upload.previousElementSibling.textContent = name;
+      (upload:HTMLElement).previousElementSibling.textContent = name;
     });
   });
 
