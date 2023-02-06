@@ -1,12 +1,12 @@
-const mask = (selector) => {
-  const setCursorPosition = (pos, elem) => {
+const mask = (selector:string) => {
+  const setCursorPosition = (pos:number, elem:HTMLInputElement) => {
     elem.focus();
 
     //полифил для старого браузера
     if (elem.setSelectionRange) {
       elem.setSelectionRange(pos, pos);
-    } else if (elem.createTextRange) {
-      const range = elem.createTextRange();
+    } else if ((elem as any).createTextRange) {
+      const range = (elem as any).createTextRange();
 
       range.collapse(true);
       range.moveEnd('character', pos);
@@ -15,12 +15,12 @@ const mask = (selector) => {
     }
   };
 
-  function createMask(event) {
+  function createMask(event:Event) {
     const matrix = '+7 (___) ___ __ __';
-    let i = 0;
+    let i:number = 0;
     //получать все НЕ цифры, которые там есть
     let def = matrix.replace(/\D/g, '');
-    let val = this.value.replace(/\D/g, '');
+    let val:string = this.value.replace(/\D/g, '');
 
     if (def.length >= val.length) {
       val = def;
@@ -39,7 +39,7 @@ const mask = (selector) => {
     }
   }
 
-  const inputs = document.querySelectorAll(selector);
+  const inputs = document.querySelectorAll(selector) as NodeListOf<Element>;
 
   inputs.forEach((input) => {
     input.addEventListener('input', createMask);
