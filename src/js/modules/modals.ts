@@ -87,14 +87,14 @@ export const modals = () => {
     });
   }
 
-  const showModalByTime = (selector: HTMLInputElement, time: number) => {
+  const showModalByTime = (selector: string, time: number) => {
     setTimeout(() => {
-      const display = false;
+      let display = false;
 
       document.querySelectorAll('[data-modal]').forEach((item) => {
         //если модальное окно показано пользователю, то делаем...
         if (getComputedStyle(item).display !== 'none') {
-          display = 'block';
+          display:boolean = 'block';
         }
       });
 
