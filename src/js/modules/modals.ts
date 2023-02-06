@@ -87,7 +87,7 @@ export const modals = () => {
     });
   }
 
-  const showModalByTime = (selector: HTMLElement, time: number) => {
+  const showModalByTime = (selector: HTMLInputElement, time: number) => {
     setTimeout(() => {
       const display = false;
 
