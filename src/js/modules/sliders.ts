@@ -1,13 +1,21 @@
 //значение в виде строки, селекторы отвечающие за кнопки
-const sliders = ({ slides, dir, prev, next }) => {
+export interface ISliders {
+  slides: string;
+  dir: string;
+  prev: string;
+  next: string;
+}
+
+const sliders = ({ slides, dir, prev, next }: ISliders) => {
   //показывается первый слайд на странице
-  let slideIndex = 1;
-  let paused = false;
+  let slideIndex: number = 1;
+  let paused: any = false;
+
   //создание элементов
-  const items = document.querySelectorAll(slides);
+  const items:NodeListOf<Element> = document.querySelectorAll(slides) as NodeListOf<Element>;
 
   //функция, перемещающая slideIndex
-  const showSlides = (n) => {
+  const showSlides = (n: number) => {
     if (n > items.length) {
       slideIndex = 1;
     }
@@ -17,7 +25,7 @@ const sliders = ({ slides, dir, prev, next }) => {
     }
 
     //скрыьб другие слайды, показать текущий
-    items.forEach((item) => {
+    items.forEach((item:any) => {
       item.classList.add('animated');
       item.style.display = 'none';
     });
@@ -31,7 +39,7 @@ const sliders = ({ slides, dir, prev, next }) => {
 
   //функционал слайдера
   //когда кликаем на определённые элементы (вперёд/назад)
-  const plusSlides = (n) => {
+  const plusSlides = (n:number) => {
     showSlides((slideIndex += n));
   };
 
@@ -39,8 +47,8 @@ const sliders = ({ slides, dir, prev, next }) => {
   //если подозреваем ошибки, используем
   //чтоб не обрушить все скрипты
   try {
-    const prevBtn = document.querySelector(prev);
-    const nextBtn = document.querySelector(next);
+    const prevBtn = document.querySelector(prev) as HTMLElement;
+    const nextBtn = document.querySelector(next) as HTMLElement;
 
     prevBtn.addEventListener('click', () => {
       plusSlides(-1);
@@ -75,10 +83,10 @@ const sliders = ({ slides, dir, prev, next }) => {
   activateAnimation();
 
   //чтоб при наведении мышки на слайдер, он не переключался
-  items[0].parentNode.addEventListener('mouseenter', () => {
+  (items[0].parentNode as HTMLElement).addEventListener('mouseenter', () => {
     clearInterval(paused);
   });
-  items[0].parentNode.addEventListener('mouseleave', () => {
+  (items[0].parentNode as HTMLElement).addEventListener('mouseleave', () => {
     activateAnimation();
   });
 };
