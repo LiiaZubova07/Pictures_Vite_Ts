@@ -5,7 +5,7 @@ import mask from './js/modules/mask';
 // import checkTextInputs from './modules/checkTextInputs';
 // import showMoreStyles from './modules/showMoreStyles';
 import calc from './js/modules/calc';
-// import filter from './modules/filter';
+import filter from './js/modules/filter';
 // import pictureSize from './modules/pictureSize';
 // import accordion from './modules/accordion';
 // import burger from './modules/burger';
@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
     result: '.calc-price',
   });
 
-//   filter();
+  filter();
 
 //   pictureSize('.sizes-block');
 
