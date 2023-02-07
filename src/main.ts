@@ -1,11 +1,11 @@
 import modals from './js/modules/modals';
 // import sliders from './modules/sliders';
-// import forms from './modules/forms';
-// import mask from './modules/mask';
+import forms from './js/modules/forms';
+import mask from './js/modules/mask';
 // import checkTextInputs from './modules/checkTextInputs';
 // import showMoreStyles from './modules/showMoreStyles';
-// import calc from './modules/calc';
-import filter from './js/modules/filter';
+import calc from './js/modules/calc';
+import filter from './modules/filter';
 // import pictureSize from './modules/pictureSize';
 // import accordion from './modules/accordion';
 // import burger from './modules/burger';
@@ -30,9 +30,9 @@ window.addEventListener('DOMContentLoaded', () => {
 //     dir: 'vertical',
 //   });
 
-//   forms();
+  forms();
 
-//   mask('[name="phone"]');
+  mask('[name="phone"]');
 
 //   checkTextInputs('[name="name"]');
 //   checkTextInputs('[name="message"]');
@@ -42,13 +42,13 @@ window.addEventListener('DOMContentLoaded', () => {
 //     wrapper: '#styles .row',
 //   });
 
-//   calc({
-//     size: '#size',
-//     material: '#material',
-//     options: '#options',
-//     promocode: '.promocode',
-//     result: '.calc-price',
-//   });
+  calc({
+    size: '#size',
+    material: '#material',
+    options: '#options',
+    promocode: '.promocode',
+    result: '.calc-price',
+  });
 
   filter();
 

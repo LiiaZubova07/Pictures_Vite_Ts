@@ -13,17 +13,17 @@ export const filter = () => {
 
   const wrapper = document.querySelector('.portfolio-wrapper') as HTMLElement;
 
-  const markAll = wrapper.querySelectorAll('.all') as NodeListOf<Element>;
-  const markGirl = wrapper.querySelectorAll('.girl') as NodeListOf<Element>;
-  const markLovers = wrapper.querySelectorAll('.lovers') as NodeListOf<Element>;
-  const markChef = wrapper.querySelectorAll('.chef') as NodeListOf<Element>;
-  const markGuy = wrapper.querySelectorAll('.guy') as NodeListOf<Element>;
+  const markAll = wrapper.querySelectorAll('.all');
+  const markGirl = wrapper.querySelectorAll('.girl');
+  const markLovers = wrapper.querySelectorAll('.lovers');
+  const markChef = wrapper.querySelectorAll('.chef');
+  const markGuy = wrapper.querySelectorAll('.guy');
 
   const no = document.querySelector('.portfolio-no') as HTMLElement;
 
   //фильтрация элементов
   //скрыть ненужные элементы и показать нужные
-  const typeFilter = (markType: NodeListOf<HTMLElement>) => {
+  const typeFilter = (markType:any) => {
     markAll.forEach((mark) => {
       mark.style.display = 'none';
       mark.classList.remove('animated', 'fadeIn');
@@ -41,15 +41,9 @@ export const filter = () => {
       no.style.display = 'block';
       no.classList.add('animated', 'fadeIn');
     }
-
-    //  markType
-    // -? markType.forEach((mark) => {
-    //        (mark.style.display = 'block'), mark.classList.add('animated', 'fadeIn');
-    //      })
-    //    : ((no.style.display = 'block'), no.classList.add('animated', 'fadeIn'));
   };
 
-  const btn = (btnName, markName) => {
+  const btn = (btnName:HTMLElement, markName:NodeListOf<Element> | string) => {
     btnName.addEventListener('click', () => {
       typeFilter(markName);
     });

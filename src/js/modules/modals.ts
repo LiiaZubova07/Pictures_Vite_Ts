@@ -1,13 +1,28 @@
 //first task
 //чтобы экспортировать код, который здесь есть
-const modals = () => {
+interface IBindModals {
+  triggersSelector: string;
+  modalSelector: string;
+  closeSelector: string;
+  destroy?: boolean;
+}
+
+export const modals = () => {
   let btnPressed = false;
-  function bindModal({ triggersSelector, modalSelector, closeSelector, destroy = false }) {
+
+  function bindModal({
+    triggersSelector,
+    modalSelector,
+    closeSelector,
+    destroy = false,
+  }: IBindModals) {
     //на несколько одинаковых элементов повесить одни и те же функции
-    const triggers = document.querySelectorAll(triggersSelector);
-    const modal = document.querySelector(modalSelector);
-    const close = document.querySelector(closeSelector);
-    const windows = document.querySelectorAll('[data-modal]');
+    const triggers = document.querySelectorAll(triggersSelector) as NodeListOf<Element>;
+    const modal = document.querySelector(modalSelector) as HTMLElement;
+    const close = document.querySelector(closeSelector) as HTMLElement;
+    const windows: NodeListOf<HTMLElement> = document.querySelectorAll(
+      '[data-modal]'
+    ) as NodeListOf<HTMLElement>;
     const scroll = calcScroll();
 
     const closeModal = () => {
@@ -16,7 +31,7 @@ const modals = () => {
     };
 
     triggers.forEach((item) => {
-      item.addEventListener('click', (e) => {
+      item.addEventListener('click', (e: Event) => {
         if (e.target) {
           e.preventDefault();
         }
@@ -30,7 +45,7 @@ const modals = () => {
 
         windows.forEach((window) => {
           window.style.display = 'none';
-			 window.classList.add('animated', 'fadeIn');
+          window.classList.add('animated', 'fadeIn');
         });
         //модальное окно показывается на странице
         modal.style.display = 'block';
@@ -72,9 +87,9 @@ const modals = () => {
     });
   }
 
-  const showModalByTime = (selector, time) => {
+  const showModalByTime = (selector: string, time: number) => {
     setTimeout(() => {
-      const display = false;
+      let display:string = '';
 
       document.querySelectorAll('[data-modal]').forEach((item) => {
         //если модальное окно показано пользователю, то делаем...
@@ -85,7 +100,7 @@ const modals = () => {
 
       //если ни одно модальное окно не показывается, показываем окно, которое нужно
       if (!display) {
-        document.querySelector(selector).style.display = 'block';
+        (document.querySelector(selector) as HTMLElement).style.display = 'block';
         document.body.style.overflow = 'hidden';
         const scroll = calcScroll();
         document.body.style.marginRight = `${scroll}px`;
@@ -108,7 +123,7 @@ const modals = () => {
     return scrollWidth;
   };
 
-  const openByScroll = (selector) => {
+  const openByScroll = (selector: string) => {
     window.addEventListener('scroll', () => {
       //узнать сколько пикселей пользователь отлистал
       // + контент, который виден пользователю
@@ -119,7 +134,7 @@ const modals = () => {
           document.documentElement.scrollHeight
       ) {
         //вызвать событие вручную
-        document.querySelector(selector).click();
+        (document.querySelector(selector) as HTMLElement).click();
       }
     });
   };
@@ -144,7 +159,7 @@ const modals = () => {
   });
   openByScroll('.fixed-gift');
 
-  //  showModalByTime('.popup-consultation', 5000);
+  // showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;
