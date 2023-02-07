@@ -7,7 +7,7 @@ import mask from './js/modules/mask';
 import calc from './js/modules/calc';
 import filter from './js/modules/filter';
 // import pictureSize from './modules/pictureSize';
-// import accordion from './modules/accordion';
+import accordion from './js/modules/accordion';
 // import burger from './modules/burger';
 // import scrolling from './modules/scrolling';
 // import drop from './modules/drop';
@@ -54,9 +54,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 //   pictureSize('.sizes-block');
 
-//   accordion({
-//     triggersSelector: '.accordion-heading',
-//   });
+  accordion({
+    triggersSelector: '.accordion-heading',
+  });
 
 //   burger({
 //     menuSelector: '.burger-menu',
