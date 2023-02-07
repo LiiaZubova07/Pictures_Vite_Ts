@@ -13,7 +13,7 @@ export const filter = () => {
 
   const wrapper = document.querySelector('.portfolio-wrapper') as HTMLElement;
 
-  const markAll = wrapper.querySelectorAll('.all');
+  const markAll: NodeListOf<HTMLElement> = wrapper.querySelectorAll('.all') as NodeListOf<HTMLElement>;
   const markGirl = wrapper.querySelectorAll('.girl');
   const markLovers = wrapper.querySelectorAll('.lovers');
   const markChef = wrapper.querySelectorAll('.chef');
@@ -24,7 +24,7 @@ export const filter = () => {
   //фильтрация элементов
   //скрыть ненужные элементы и показать нужные
   const typeFilter = (markType:any) => {
-    markAll.forEach((mark) => {
+    markAll.forEach((mark: HTMLElement) => {
       mark.style.display = 'none';
       mark.classList.remove('animated', 'fadeIn');
     });
