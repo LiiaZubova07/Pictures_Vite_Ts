@@ -4,7 +4,9 @@ import { postData } from '../services/requests';
 const forms = () => {
   const forms = document.querySelectorAll('form') as NodeListOf<HTMLFormElement>;
   const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
-  const uploads:NodeListOf<HTMLFormElement> = document.querySelectorAll('[name="upload"]') as NodeListOf<HTMLFormElement>;
+  const uploads: NodeListOf<HTMLFormElement> = document.querySelectorAll(
+    '[name="upload"]'
+  ) as NodeListOf<HTMLFormElement>;
 
   //   checkNumInputs('input[name="user_phone"]');
 
@@ -29,49 +31,35 @@ const forms = () => {
       input.value = '';
     });
     uploads.forEach((upload) => {
+      // @ts-ignore-next-line
       upload.previousElementSibling.textContent = 'Файл не выбран';
     });
   };
 
-  //   uploads.forEach((upload) => {
-  //     upload.addEventListener('input', () => {
-  //       console.log(upload.files[0]);
-  //       let dots;
-  //       const arr = upload.files[0].name.split('.');
-
-  //       arr[0].length > 6 ? (dots = '...') : (dots = '.');
-  //       //
-  //       const name = arr[0].substring(0, 6) + dots + arr[1];
-  //       upload.previousElementSibling.textContent = name;
-  //     });
-  //   });
-
-  uploads.forEach((upload:HTMLElement) => {
+  uploads.forEach((upload) => {
     upload.addEventListener('input', () => {
       const file = upload.files[0];
       console.log(file);
 
-      // const fileName = file.name.split('.')[0];
-      // const fileExt = file.name.split('.')[1];
       const [fileName, fileExt] = file.name.split('.');
 
       const dots = fileName.length > 6 ? '...' : '.';
       //
       const name = `${fileName.substring(0, 6)} ${dots} ${fileExt}`;
-
-      (upload:HTMLElement).previousElementSibling.textContent = name;
+      // @ts-ignore-next-line
+      upload.previousElementSibling.textContent = name;
     });
   });
 
   //перебор форм
   forms.forEach((form) => {
-    form.addEventListener('submit', (e:Event) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       //форма для сообщений выше
       const statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
-      form.parentNode.appendChild(statusMessage);
+      (form.parentNode as ParentNode).appendChild(statusMessage);
 
       //чтоб исчезало и не оставляло физического места
       form.classList.add('animated', 'fadeOutUp');
@@ -92,10 +80,11 @@ const forms = () => {
 
       //сбор данных из формы
       const formData = new FormData(form);
-      const api =
+		
+      const api: string =
         form.closest('.popup-design') || form.classList.contains('calc_form')
-          ? (api = path.designer)
-          : (api = path.question);
+          ? path.designer
+          : path.question;
       console.log(api);
 
       //formData отправляется на сервер
