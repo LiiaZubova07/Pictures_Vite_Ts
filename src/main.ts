@@ -4,7 +4,7 @@ import forms from './js/modules/forms';
 import mask from './js/modules/mask';
 // import checkTextInputs from './modules/checkTextInputs';
 // import showMoreStyles from './modules/showMoreStyles';
-// import calc from './modules/calc';
+import calc from './js/modules/calc';
 // import filter from './modules/filter';
 // import pictureSize from './modules/pictureSize';
 // import accordion from './modules/accordion';
@@ -42,13 +42,13 @@ window.addEventListener('DOMContentLoaded', () => {
 //     wrapper: '#styles .row',
 //   });
 
-//   calc({
-//     size: '#size',
-//     material: '#material',
-//     options: '#options',
-//     promocode: '.promocode',
-//     result: '.calc-price',
-//   });
+  calc({
+    size: '#size',
+    material: '#material',
+    options: '#options',
+    promocode: '.promocode',
+    result: '.calc-price',
+  });
 
 //   filter();
 
