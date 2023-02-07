@@ -1,6 +1,6 @@
 import modals from './js/modules/modals';
 // import sliders from './modules/sliders';
-// import forms from './modules/forms';
+import forms from './js/modules/forms';
 import mask from './js/modules/mask';
 // import checkTextInputs from './modules/checkTextInputs';
 // import showMoreStyles from './modules/showMoreStyles';
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
 //     dir: 'vertical',
 //   });
 
-//   forms();
+  forms();
 
   mask('[name="phone"]');
 

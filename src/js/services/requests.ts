@@ -1,5 +1,5 @@
-  //запрос на сервер
-  const postData = async (url, data) => {
+ //запрос на сервер
+const postData = async (url:string, data:FormData): Promise<string> => {
 	const res = await fetch(url, {
 	  method: 'POST',
 	  body: data,
@@ -9,7 +9,7 @@
  };
 
   //запрос на сервер
-  const getResource = async (url) => {
+  const getResource = async (url:string) => {
 	const res = await fetch(url);
 
 	//если что-то не так, выходит ошибка
