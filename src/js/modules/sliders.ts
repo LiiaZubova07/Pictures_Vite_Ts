@@ -2,8 +2,8 @@
 export interface ISliders {
   slides: string;
   dir: string;
-  prev: string;
-  next: string;
+  prev?: string;
+  next?: string;
 }
 
 const sliders = ({ slides, dir, prev, next }: ISliders) => {
@@ -12,7 +12,7 @@ const sliders = ({ slides, dir, prev, next }: ISliders) => {
   let paused: any = false;
 
   //создание элементов
-  const items:NodeListOf<Element> = document.querySelectorAll(slides) as NodeListOf<Element>;
+  const items: NodeListOf<HTMLElement> = document.querySelectorAll(slides) as NodeListOf<HTMLElement>;
 
   //функция, перемещающая slideIndex
   const showSlides = (n: number) => {
@@ -31,7 +31,7 @@ const sliders = ({ slides, dir, prev, next }: ISliders) => {
     });
 
     //чтоб слайд начинался с 1, а не с 0
-    items[slideIndex - 1].style.display = 'block';
+    items[slideIndex - 1].style .display  = 'block';
   };
 
   //инициализация
@@ -47,8 +47,8 @@ const sliders = ({ slides, dir, prev, next }: ISliders) => {
   //если подозреваем ошибки, используем
   //чтоб не обрушить все скрипты
   try {
-    const prevBtn = document.querySelector(prev) as HTMLElement;
-    const nextBtn = document.querySelector(next) as HTMLElement;
+    const prevBtn = document.querySelector(prev as string) as HTMLElement;
+    const nextBtn = document.querySelector(next as string) as HTMLElement;
 
     prevBtn.addEventListener('click', () => {
       plusSlides(-1);
