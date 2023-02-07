@@ -1,5 +1,5 @@
 import modals from './js/modules/modals';
-// import sliders from './modules/sliders';
+import sliders from './js/modules/sliders';
 import forms from './js/modules/forms';
 import mask from './js/modules/mask';
 // import checkTextInputs from './modules/checkTextInputs';
@@ -18,17 +18,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   modals();
 
-//   sliders({
-//     slides: '.feedback-slider-item',
-//     dir: 'horizontal',
-//     prev: '.main-prev-btn',
-//     next: '.main-next-btn',
-//   });
+  sliders({
+    slides: '.feedback-slider-item',
+    dir: 'horizontal',
+    prev: '.main-prev-btn',
+    next: '.main-next-btn',
+  });
 
-//   sliders({
-//     slides: '.main-slider-item',
-//     dir: 'vertical',
-//   });
+  sliders({
+    slides: '.main-slider-item',
+    dir: 'vertical',
+  });
 
   forms();
 
