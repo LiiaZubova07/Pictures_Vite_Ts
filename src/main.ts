@@ -37,10 +37,10 @@ window.addEventListener('DOMContentLoaded', () => {
   checkTextInputs('[name="name"]');
   checkTextInputs('[name="message"]');
 
-//   showMoreStyles({
-//     trigger: '.button-styles',
-//     wrapper: '#styles .row',
-//   });
+  showMoreStyles({
+    trigger: '.button-styles',
+    wrapper: '#styles .row',
+  });
 
   calc({
     size: '#size',
@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
     burgerSelector: '.burger',
   });
 
-//   scrolling('.pageup');
+  scrolling('.pageup');
 
   drop();
 });
