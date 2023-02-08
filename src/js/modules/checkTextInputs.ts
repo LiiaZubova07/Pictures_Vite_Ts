@@ -1,5 +1,5 @@
-const checkTextInputs = (selector) => {
-const txtInputs = document.querySelectorAll(selector);
+const checkTextInputs = (selector:string) => {
+const txtInputs = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
 
 txtInputs.forEach(input=>{
 	input.addEventListener('keypress', (e)=>{
