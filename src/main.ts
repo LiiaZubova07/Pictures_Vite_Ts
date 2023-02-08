@@ -3,13 +3,13 @@ import sliders from './js/modules/sliders';
 import forms from './js/modules/forms';
 import mask from './js/modules/mask';
 import checkTextInputs from './js/modules/checkTextInputs';
-// import showMoreStyles from './modules/showMoreStyles';
+import showMoreStyles from './js/modules/showMoreStyles';
 import calc from './js/modules/calc';
 import filter from './js/modules/filter';
-// import pictureSize from './modules/pictureSize';
+import pictureSize from './js/modules/pictureSize';
 import accordion from './js/modules/accordion';
 import burger from './js/modules/burger';
-// import scrolling from './modules/scrolling';
+import scrolling from './js/modules/scrolling';
 import drop from './js/modules/drop';
 
 //когда вся DOM-структура загружена
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   filter();
 
-//   pictureSize('.sizes-block');
+  pictureSize('.sizes-block');
 
   accordion({
     triggersSelector: '.accordion-heading',
