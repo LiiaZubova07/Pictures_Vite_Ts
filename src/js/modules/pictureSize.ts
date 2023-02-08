@@ -10,7 +10,7 @@ const pictureSize = (imgSelector: string) => {
     (img.src as string) = img.src.slice(0, -4) + "-1.png";
     //скрыть лишние эл-ты
     block.querySelectorAll("p:not(.sizes-hit").forEach((p) => {
-      p.style.display= "none";
+      (p as HTMLElement).style.display= "none";
     });
   };
 
@@ -21,8 +21,8 @@ const pictureSize = (imgSelector: string) => {
     img.src = img.src.slice(0, -6) + ".png";
 
     //скрыть лишние эл-ты
-    block.querySelectorAll("p:not(.sizes-hit").forEach((p:any) => {
-      p.style.display = "block";
+    block.querySelectorAll("p:not(.sizes-hit").forEach((p) => {
+      (p as HTMLElement).style.display = "block";
     });
   };
 
